@@ -4,7 +4,7 @@ var options = {
 	password: 'secret'
 }
 
-var client  = mqtt.connect('mqtt://localhost', options)
+var client  = mqtt.connect('mqtts://localhost', options)
 
 
 client.on('connect', function () {

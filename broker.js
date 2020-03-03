@@ -20,11 +20,27 @@ var authorizeSubscribe = function(client, topic, callback) {
   callback(null, client.user == "sub");
 }
 
+
+var SECURE_KEY = __dirname + '/certificate_authority/server_key.pem';
+var SECURE_CERT = __dirname + '/certificate_authority/server.pem';
+
+
 var settings = {
   port: 1883,
-};
+  logger: {
+    name: "secureExample",
+    level: 40,
+  },
+  secure : {
+    port: 8883,
+    keyPath: SECURE_KEY,
+    certPath: SECURE_CERT,
+  }
+}
 
 var server = new mosca.Server(settings);
+
+
 
 
 
@@ -45,6 +61,7 @@ function setup() {
   server.authenticate = authenticate;
   server.authorizePublish = authorizePublish;
   server.authorizeSubscribe = authorizeSubscribe;
+  console.log(server);
   console.log('Mosca server is up and running');
 
 }
