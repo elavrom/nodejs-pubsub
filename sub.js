@@ -1,8 +1,15 @@
 var mqtt = require('mqtt');
-var client  = mqtt.connect('mqtt://localhost')
+var options = {
+	username: 'sub',
+	password: 'secret'
+}
+
+var client  = mqtt.connect('mqtt://localhost', options)
+
+
 
 client.on('connect', function () {
-	client.subscribe('presence');
+	client.subscribe("default");
 })
 
 
